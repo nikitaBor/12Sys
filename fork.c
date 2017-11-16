@@ -8,7 +8,7 @@ int main(){
   printf("I am parent %d and I will FORK\n", getpid());
   int granny = getpid();
   int child = fork();
-  if (getpid() == granny){
+  if (getpid() == granny){//parent
     child = fork();
     int status;
     int childPID = wait(&status);
@@ -17,9 +17,10 @@ int main(){
     }
   }
 
-  if (!child){
+  if (!child){//don't let the ! mislead you; this means it's a child
     printf("I am a child and my pid is %d\n", getpid());
-    int timeAsleep = rand()%2+5;//change the 2 to 16 later (note to self)
+    srand(time(NULL));
+    int timeAsleep = rand()%16+5;//5 to 21 seconds of sleep wow envy of Stuy kids
     sleep(timeAsleep); //sleeps between 5 and 20 seconds
     printf("I am child %d and I woke up\n", getpid());
     return timeAsleep;
