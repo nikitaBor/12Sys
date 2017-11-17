@@ -19,7 +19,7 @@ int main(){
 
   if (!child){//don't let the ! mislead you; this means it's a child
     printf("I am a child and my pid is %d\n", getpid());
-    srand(time(NULL));
+    srand(getpid());
     int timeAsleep = rand()%16+5;//5 to 21 seconds of sleep wow envy of Stuy kids
     sleep(timeAsleep); //sleeps between 5 and 20 seconds
     printf("I am child %d and I woke up\n", getpid());
